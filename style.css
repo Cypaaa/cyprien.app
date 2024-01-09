@@ -1,0 +1,179 @@
+:root {
+    --main-w: 100vw;
+    --main-h: 100vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+
+main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    transform:rotate(-90deg) translateY(calc(var(--main-h) * -1));
+    transform-origin: right top;
+
+    width: var(--main-h);
+    height: var(--main-w);
+
+    overflow-x: hidden;
+    overflow-y: visible;
+
+    scroll-snap-type: y mandatory;
+}
+
+main > div {
+    display: flex;
+    flex-direction: row;
+    transform:rotate(90deg);    
+}
+
+section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    scroll-margin-block-start: -1px;
+
+    width: var(--main-w);
+    height: var(--main-h);
+    min-width: var(--main-w);
+    min-height: var(--main-h);
+    background-color: #141b24;
+}
+
+/* ============ section 1 */
+
+section:nth-child(1) img {
+    z-index: 10;
+    position: absolute;
+    width: var(--main-w);
+}
+
+/* ============ section 2 */
+
+.wave {
+    z-index: 0;
+    position: absolute;
+    background: url("./svg/wave.svg") repeat-x;
+
+    width: 200vw;
+    height: 100px;
+
+    animation: waving 60s infinite linear;
+}
+
+#wave1 {
+    bottom: 30px;
+    animation-direction: reverse;
+    filter: hue-rotate(33deg);
+}
+
+#wave2 {
+    bottom: 10px;
+    animation-duration: 45s;
+    filter: hue-rotate(25deg);
+}
+
+#wave3 {
+    bottom: 5px;
+    animation-duration: 30s;
+    animation-direction: reverse;
+    filter: hue-rotate(18deg);
+}
+
+#wave4 {
+    bottom: 0;
+    animation-duration: 20s;
+    filter: hue-rotate(16deg);
+}
+
+@keyframes waving {
+    from {
+        left: 100vw;
+    }
+    to {
+        left: 0vw;
+    }
+}
+
+section:nth-child(2) #boatcontainer {
+    position: absolute;
+    bottom: 20px;
+    left: calc(var(--main-w) * 1.5);
+    transform: translateX(-50%);
+    animation: boatMouvement 5s infinite alternate;
+}
+
+@keyframes boatMouvement {
+    0% {
+        bottom: 26px;
+        left: calc(var(--main-w) * 1.49);
+    }
+    13% {
+        bottom: 18px;
+        left: calc(var(--main-w) * 1.5);
+        transform: skew(-1deg) translateX(-50%);
+    }
+    24% {
+        bottom: 23px;
+        transform: skew(-2deg) translateX(-50%);
+    }
+    62% {
+        bottom: 22px;
+        left: calc(var(--main-w) * 1.51);
+        transform: skew(-1deg) translateX(-50%);
+    }
+    100% {
+        bottom: 20px;
+        left: calc(var(--main-w) * 1.5);
+        transform: skew(0deg) translateX(-50%);
+    }
+}
+
+section:nth-child(2) #boatcontainer #flags {
+    animation: flags 5s infinite alternate;
+}
+
+@keyframes flags {
+    0% {
+        transform: skew(0);
+    }
+    13% {
+        transform: skew(1deg);
+    }
+    24% {
+        transform: skew(-1deg);
+    }
+    46% {
+        transform: skew(0deg);
+    }
+    62% {
+        transform: skew(-2deg);
+    }
+    78% {
+        transform: skew(1deg);
+    }
+    100% {
+        transform: skew(0deg);
+    }
+}
