@@ -50,6 +50,7 @@ main > div {
 }
 
 section {
+    position: relative;
     scroll-snap-align: start;
     scroll-snap-stop: normal;
     scroll-margin-block-start: -1px;
@@ -58,18 +59,31 @@ section {
     height: var(--main-h);
     min-width: var(--main-w);
     min-height: var(--main-h);
+    max-width: var(--main-w);
+    max-height: var(--main-h);
     background-color: #141b24;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
-/* ============ section 1 */
+/* ============ section 1 (montain) */
 
-section:nth-child(1) img {
+section:nth-child(1) div {
     z-index: 10;
     position: absolute;
+    background-image: url("./svg/Mountain.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     width: var(--main-w);
+    height: var(--main-h);
 }
 
-/* ============ section 2 */
+/* ============ section 2 (sea) */
+
+.sea {
+    overflow: hidden;
+}
 
 .wave {
     z-index: 0;
@@ -79,12 +93,17 @@ section:nth-child(1) img {
     width: 200vw;
     height: 100px;
 
-    animation: waving 60s infinite linear;
+    animation: waving 60s infinite linear alternate;
+}
+
+#wave0 {
+    bottom: 30px;
+    filter: hue-rotate(38deg);
 }
 
 #wave1 {
     bottom: 30px;
-    animation-direction: reverse;
+    animation-direction: alternate-reverse;
     filter: hue-rotate(33deg);
 }
 
@@ -96,30 +115,30 @@ section:nth-child(1) img {
 
 #wave3 {
     bottom: 5px;
-    animation-duration: 30s;
-    animation-direction: reverse;
-    filter: hue-rotate(18deg);
+    animation-duration: 22s;
+    animation-direction: alternate-reverse;
+    filter: hue-rotate(19deg);
 }
 
 #wave4 {
     bottom: 0;
     animation-duration: 20s;
-    filter: hue-rotate(16deg);
+    filter: hue-rotate(17deg);
 }
 
 @keyframes waving {
     from {
-        left: 100vw;
+        left: -100%;
     }
     to {
-        left: 0vw;
+        left: 0;
     }
 }
 
 section:nth-child(2) #boatcontainer {
     position: absolute;
     bottom: 20px;
-    left: calc(var(--main-w) * 1.5);
+    left: 50%;
     transform: translateX(-50%);
     animation: boatMouvement 5s infinite alternate;
 }
@@ -127,11 +146,11 @@ section:nth-child(2) #boatcontainer {
 @keyframes boatMouvement {
     0% {
         bottom: 26px;
-        left: calc(var(--main-w) * 1.49);
+        left: 49%;
     }
     13% {
         bottom: 18px;
-        left: calc(var(--main-w) * 1.5);
+        left: 50%;
         transform: skew(-1deg) translateX(-50%);
     }
     24% {
@@ -140,12 +159,12 @@ section:nth-child(2) #boatcontainer {
     }
     62% {
         bottom: 22px;
-        left: calc(var(--main-w) * 1.51);
+        left: 51%;
         transform: skew(-1deg) translateX(-50%);
     }
     100% {
         bottom: 20px;
-        left: calc(var(--main-w) * 1.5);
+        left: 50%;
         transform: skew(0deg) translateX(-50%);
     }
 }
